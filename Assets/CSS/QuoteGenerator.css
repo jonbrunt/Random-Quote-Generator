@@ -1,5 +1,6 @@
 body {
 	max-width: 1600px;
+	margin: 0 auto;
 	font-family: 'Merriweather', serif;
 	transition: background-color 1.5s;
 	-webkit-touch-callout: none;
