@@ -1,19 +1,19 @@
 let body = document.querySelector('body');
 let quote = '', author = '';
 
-init(); 
+init();
 //function that initializes program on page load
 function init() {
 	fadeIn(body, 2500); //fades in body with 2500 ms timing
 	receive(); //calls receive function to fetch data from API
 	randomize(); //calls randomize function to make html and css changes to page
 	//on click, generates a new random quote and assigns a new page color
-	let quoteButton = document.querySelector('#quoteButton').addEventListener('click', function() {
+	let quoteButton = document.querySelector('#quoteButton').addEventListener('click', function () {
 		receive();
 		randomize();
 	});
 	//adds click event listener to twitter button
-	let twitterButton = document.querySelector('#twitterButton').addEventListener('click', function() {
+	let twitterButton = document.querySelector('#twitterButton').addEventListener('click', function () {
 		//concatenates specific URL for current quote based on quote and author
 		this.setAttribute('href', 'https://twitter.com/intent/tweet?text=' + encodeURIComponent('"' + quote + '" -' + author));
 	});
@@ -22,11 +22,11 @@ function init() {
 function fadeIn(element, time) {
 	let milli = new Date().getTime();
 	//function that brings opacity from 0 - 1 based on time argument
-	let animate = function() {
+	let animate = function () {
 		element.style.opacity = +element.style.opacity + (new Date() - milli) / time;
 		milli = new Date().getTime();
 		if (+element.style.opacity < 1) {
-		  (window.requestAnimationFrame && requestAnimationFrame(animate)) || setTimeout(animate, 10);
+			(window.requestAnimationFrame && requestAnimationFrame(animate)) || setTimeout(animate, 10);
 		}
 	};
 	//calls function for fade in animation
@@ -41,16 +41,16 @@ function replace(quote, author) {
 function receive() {
 	const url = 'https://talaikis.com/api/quotes/random/';
 	fetch(url)
-	.then(res => res.json()) 
-	.then(function(data) {
-		//assigns values based on return from API
-		quote = data.quote;
-		author = data.author;
-		replace(quote, author); //calls function to update quote and author information on page
-	})
-	.catch(function(error) {
-		alert('An error ocurred while trying to load a quote. Please try again.');
-	})
+		.then(res => res.json())
+		.then(function (data) {
+			//assigns values based on return from API
+			quote = data.quote;
+			author = data.author;
+			replace(quote, author); //calls function to update quote and author information on page
+		})
+		.catch(function (error) {
+			alert('An error ocurred while trying to load a quote. Please try again.');
+		})
 }
 
 function randomize() {
