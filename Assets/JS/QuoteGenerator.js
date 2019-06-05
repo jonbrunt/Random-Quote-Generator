@@ -39,13 +39,13 @@ function replace(quote, author) {
 }
 //function that fetches information from ralaikis random quote API
 function receive() {
-	const url = 'https://talaikis.com/api/quotes/random/';
+	const url = 'https://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1';
 	fetch(url)
 		.then(res => res.json())
 		.then(function (data) {
 			//assigns values based on return from API
-			quote = data.quote;
-			author = data.author;
+			quote = data.content;
+			author = data.title;
 			replace(quote, author); //calls function to update quote and author information on page
 		})
 		.catch(function (error) {
